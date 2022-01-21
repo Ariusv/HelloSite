@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title%}
+    #hellopage
+{% endblock %}
+
+{% block content %}
+<div class="hellopage-content">
+    {% if name_count == 1 %}
+    <h1 class="title">Hello {{ person.name }} {{ person.surname }}!</h1>
+    {% elif name_count == 2 %}
+    <h1 class="title">We already said hello to another {{ person.name }}, but hello anyway!</h1>
+    {% else %}
+    <h1 class="title">We already said hello to {{ name_count|add:-1 }} {{ person.name }}s, but hello anyway!</h1>
+    {% endif %}
+</div>
+{% endblock %}

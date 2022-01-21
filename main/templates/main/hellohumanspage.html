@@ -1,0 +1,65 @@
+{% extends 'main/layout.html' %}
+
+{% block title%}
+#hellohumans
+{% endblock %}
+
+{% block content %}
+<div class="hellohumanspage-context">
+    <div>
+        <h1 class="title">#hellohumans</h1>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            {% for column in columns %}
+            <th scope="col">{{ column.verbose_name }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for human in humans %}
+        <tr>
+            <td>{{ human.name }}</td>
+            <td>{{ human.surname }}</td>
+            <td>{{ human.email }}</td>
+            <td>{{ human.datetime }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if page_obj.has_other_pages %}
+    <nav class="list-pages">
+        <ul class="pagination justify-content-center">
+
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lt</a>
+            </li>
+            {% endif %}
+
+            {% for p in paginator.page_range %}
+
+            {% if page_obj.number == p %}
+            <li class="page-item active">
+                <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+            </li>
+            {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+            </li>
+            {% endif %}
+
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">&gt</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}
+

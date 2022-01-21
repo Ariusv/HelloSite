@@ -1,0 +1,30 @@
+{% extends 'main/layout.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title%}
+#hellohuman
+{% endblock %}
+
+{% block content %}
+<div class="context">
+    <h1 class="title">#hellohuman</h1>
+    <div class="forms">
+        <form action="{% url 'home' %}" method="post">
+            {% csrf_token %}
+
+            <div class="form-error">{{ form.non_field_errors }}</div>
+
+            {% for elem in form %}
+            <div class="textform">
+                {{ elem|as_crispy_field }}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary btn-lg">Hello</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+
