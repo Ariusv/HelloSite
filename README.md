@@ -1,8 +1,8 @@
 # Простий сайт на Django
 
-## Посилання:https://hellohumans.herokuapp.com/
+## Посилання: https://hellohumans.herokuapp.com/
 
-##Скріншоти виконання: 
+## Скріншоти 
 
 ![](/images/1.png)
 ![](/images/2.png)
