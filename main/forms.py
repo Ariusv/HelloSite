@@ -25,3 +25,9 @@ class AddPersonForm(forms.ModelForm):
         word_validator(surname)
 
         return surname
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        email_validator(email)
+
+        return email
