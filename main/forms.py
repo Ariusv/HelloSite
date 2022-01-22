@@ -3,7 +3,6 @@ from django import forms
 from .models import *
 from .services.validators import *
 
-
 class AddPersonForm(forms.ModelForm):
     class Meta:
         model = Person
@@ -14,20 +13,17 @@ class AddPersonForm(forms.ModelForm):
             'email': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ex. john.doe@ex.com'})
         }
 
+    @word_validator
     def clean_name(self):
         name = self.cleaned_data['name']
-        word_validator(name)
-
         return name
 
+    @word_validator
     def clean_surname(self):
         surname = self.cleaned_data['surname']
-        word_validator(surname)
-
         return surname
 
+    @email_validator
     def clean_email(self):
         email = self.cleaned_data['email']
-        email_validator(email)
-
         return email
