@@ -1,7 +1,7 @@
 from django import forms
 
 from .models import *
-from .validators import *
+from .services.validators import *
 
 
 class AddPersonForm(forms.ModelForm):
