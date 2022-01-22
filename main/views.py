@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView
 
+from .services.ormutils import *
 from .forms import *
 
 
@@ -18,7 +17,7 @@ class HellohumanspageView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['columns'] = Person._meta.fields[1:]
+        context['columns'] = get_person_fields()
 
         return context
 
@@ -31,7 +30,7 @@ class HellopageView(DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['name_count'] = Person.objects.filter(name=context['person'].name).count()
+        context['name_count'] = get_person_names_count(context['person'])
 
         return context
 
